@@ -1,0 +1,382 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model IndustryDictionary {
+  id        String           @id @default(cuid())
+  source    String
+  code      String           @unique
+  nameEn    String
+  nameZh    String
+  level     Int              @default(1)
+  parentCode String?
+  sortOrder Int              @default(0)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  roles     RoleDictionary[]
+}
+
+model RoleDictionary {
+  id           String              @id @default(cuid())
+  source       String
+  sourceCode   String
+  socCode      String?             @unique
+  slug         String              @unique
+  nameEn       String
+  nameZh       String
+  industryCode String
+  keywords     Json
+  isActive     Boolean             @default(true)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  industry     IndustryDictionary  @relation(fields: [industryCode], references: [code], onDelete: Restrict)
+  role         Role?
+
+  @@unique([source, sourceCode])
+}
+
+model Role {
+  id                      String              @id @default(cuid())
+  dictionaryRoleId        String?             @unique
+  slug                    String              @unique
+  socCode                 String?
+  nameEn                  String
+  nameZh                  String
+  summaryEn               String
+  summaryZh               String
+  riskLevel               RiskLevel
+  replacementRate         Int?
+  riskSummaryEn           String?
+  riskSummaryZh           String?
+  riskReasons             Json?
+  riskModelProvider       String?
+  riskModelName           String?
+  riskInferenceRaw        Json?
+  riskInputHash           String?
+  riskPromptVersion       String?
+  riskCachedAt            DateTime?
+  ratingStatus            RatingStatus        @default(RATED)
+  lastRatedAt             DateTime?
+  repetitionScore         Int
+  ruleClarityScore        Int
+  transformationScore     Int
+  workflowAutomationScore Int
+  interpersonalScore      Int
+  physicalityScore        Int
+  ambiguityScore          Int
+  riskSnapshots           RoleRiskSnapshot[]
+  dictionaryRole          RoleDictionary?     @relation(fields: [dictionaryRoleId], references: [id], onDelete: SetNull)
+  notificationDispatches  NotificationDispatch[]
+  signals                 Signal[]
+  sourceItemDecisions     SourceItemRoleDecision[]
+  sourceItemInferences    SourceItemInference[]
+  subscriptions           WatchSubscription[]
+}
+
+model RoleRiskSnapshot {
+  id              String       @id @default(cuid())
+  roleId          String
+  snapshotAt      DateTime
+  replacementRate Int?
+  riskLevel       RiskLevel
+  ratingStatus    RatingStatus
+  wasRecomputed   Boolean      @default(false)
+  source          String
+  createdAt       DateTime     @default(now())
+  role            Role         @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@index([roleId, snapshotAt])
+  @@unique([roleId, snapshotAt])
+}
+
+model Signal {
+  id          String         @id @default(cuid())
+  roleId      String
+  sourceUrl   String
+  sourceTitle String
+  sourceType  SourceType
+  signalType  SignalType
+  strength    SignalStrength
+  publishedAt DateTime
+  summaryEn   String
+  summaryZh   String
+  rationaleEn String
+  rationaleZh String
+  role        Role           @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, sourceUrl])
+}
+
+model WatchSubscription {
+  id                     String                @id @default(cuid())
+  email                  String
+  roleId                 String
+  createdAt              DateTime              @default(now())
+  lastDigestSentAt       DateTime?
+  lastAlertSentAt        DateTime?
+  lastAlertReplacementRate Int?
+  role                   Role                  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([email, roleId])
+}
+
+model NotificationDispatch {
+  id          String             @id @default(cuid())
+  email       String
+  roleId      String?
+  kind        NotificationKind
+  status      NotificationStatus @default(PENDING)
+  subjectEn   String
+  subjectZh   String
+  payload     Json
+  windowStart DateTime?
+  windowEnd   DateTime?
+  deliveryMode String?
+  previewPath String?
+  errorMessage String?
+  queuedAt    DateTime           @default(now())
+  sentAt      DateTime?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  role        Role?              @relation(fields: [roleId], references: [id], onDelete: SetNull)
+
+  @@index([email, kind, status])
+  @@index([roleId, kind])
+}
+
+model EmailVerificationChallenge {
+  id                   String   @id @default(cuid())
+  email                String   @unique
+  codeHash             String
+  expiresAt            DateTime
+  consumedAt           DateTime?
+  requestCount         Int      @default(0)
+  requestWindowStartedAt DateTime?
+  lastRequestedAt      DateTime?
+  failedAttempts       Int      @default(0)
+  lockedUntil          DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model AuthSession {
+  id                String   @id @default(cuid())
+  email             String
+  sessionTokenHash  String   @unique
+  expiresAt         DateTime
+  revokedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([email])
+}
+
+model AuthThrottleBucket {
+  id              String   @id @default(cuid())
+  action          String
+  subjectHash     String
+  requestCount    Int      @default(0)
+  windowStartedAt DateTime
+  blockedUntil    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([action, subjectHash])
+}
+
+model SourceItem {
+  id              String                   @id @default(cuid())
+  sourceCatalogId String
+  sourceLabel     String
+  sourceUrl       String
+  sourceType      SourceType
+  title           String
+  summaryEn       String
+  summaryZh       String?
+  publishedAt     DateTime
+  mappingMode     SourceMappingMode
+  classificationInputHash      String?
+  classificationPromptVersion  String?
+  classificationModelName      String?
+  classificationCachedAt       DateTime?
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  decisions       SourceItemRoleDecision[]
+  inference       SourceItemInference?
+
+  @@unique([sourceCatalogId, sourceUrl])
+}
+
+model SourceItemRoleDecision {
+  id              String                @id @default(cuid())
+  sourceItemId    String                @unique
+  roleId          String?
+  decisionStatus  MappingDecisionStatus
+  confidence      CandidateConfidence?
+  reason          String
+  candidateSlugs  Json
+  matchedKeywords Json
+  reviewStatus    ReviewStatus          @default(PENDING)
+  reviewedAt      DateTime?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  role            Role?                 @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  sourceItem      SourceItem            @relation(fields: [sourceItemId], references: [id], onDelete: Cascade)
+}
+
+model SourceItemInference {
+  id                 String                   @id @default(cuid())
+  sourceItemId       String                   @unique
+  roleId             String?
+  assignedRoleSlug   String
+  modelProvider      String
+  modelName          String
+  inferenceSummaryEn String
+  inferenceSummaryZh String
+  impactDirection    InferenceImpactDirection
+  relevance          InferenceRelevance
+  signalWeight       Float
+  rawJson            Json
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  role               Role?                    @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  sourceItem         SourceItem               @relation(fields: [sourceItemId], references: [id], onDelete: Cascade)
+}
+
+model SearchQueryRun {
+  id         String      @id @default(cuid())
+  roleSlug   String
+  provider   String
+  queryText  String
+  queryHash  String      @unique
+  status     String
+  searchedAt DateTime    @default(now())
+  expiresAt  DateTime
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  hits       SearchHit[]
+
+  @@index([roleSlug, provider])
+  @@index([expiresAt])
+}
+
+model SearchHit {
+  id          String          @id @default(cuid())
+  runId       String
+  rank        Int
+  sourceUrl   String
+  title       String
+  snippet     String
+  publishedAt DateTime?
+  rawPayload  Json?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  run         SearchQueryRun  @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  @@index([runId, rank])
+  @@unique([runId, sourceUrl])
+}
+
+model RoleEvidenceCandidate {
+  id                    String   @id @default(cuid())
+  roleSlug              String
+  sourceUrl             String
+  title                 String
+  snippet               String
+  sourceLabel           String?
+  evidenceKind          String
+  timelineEligible      Boolean  @default(false)
+  scoreEligible         Boolean  @default(false)
+  attributionConfidence Float?
+  modelProvider         String?
+  modelName             String?
+  rawJson               Json?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@unique([roleSlug, sourceUrl])
+  @@index([roleSlug, timelineEligible, updatedAt])
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  SEVERE
+}
+
+enum RatingStatus {
+  RATED
+  INSUFFICIENT_SIGNAL
+}
+
+enum SourceType {
+  BLOG
+  NEWS
+  COMPANY_UPDATE
+  JOB_POSTING
+}
+
+enum SignalType {
+  ADOPTION
+  HIRING_SHIFT
+  TOOLING
+}
+
+enum SignalStrength {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SourceMappingMode {
+  OBSERVE_ONLY
+  DIRECT_MAPPED
+}
+
+enum MappingDecisionStatus {
+  ACCEPTED
+  AMBIGUOUS
+  UNMATCHED
+}
+
+enum CandidateConfidence {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum InferenceImpactDirection {
+  INCREASE
+  MAINTAIN
+  DECREASE
+}
+
+enum InferenceRelevance {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum NotificationKind {
+  WEEKLY_DIGEST
+  SIGNIFICANT_CHANGE
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  SKIPPED
+  FAILED
+}

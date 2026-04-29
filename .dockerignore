@@ -1,0 +1,16 @@
+.git
+.github
+.next
+.next-e2e
+.DS_Store
+.env
+node_modules
+playwright-report
+test-results
+tmp
+coverage
+prisma/dev.db
+prisma/*.db-journal
+reference
+DESIGN.md
+*.tsbuildinfo

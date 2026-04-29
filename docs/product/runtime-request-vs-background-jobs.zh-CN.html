@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Role Radar 运行链路说明</title>
+    <style>
+      :root {
+        --bg: #f6f1e8;
+        --panel: #fffdf8;
+        --ink: #1f1a17;
+        --muted: #6d655f;
+        --line: #d9cfc2;
+        --accent: #bf4a2b;
+        --accent-soft: #f8e2d9;
+        --olive: #5f715e;
+        --blue: #3f637b;
+        --shadow: 0 18px 44px rgba(45, 31, 18, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+        background:
+          radial-gradient(circle at top left, rgba(191, 74, 43, 0.08), transparent 28%),
+          linear-gradient(180deg, #fbf7ef 0%, var(--bg) 100%);
+      }
+
+      main {
+        width: min(1220px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 34px 0 56px;
+      }
+
+      .hero,
+      .panel,
+      .table-panel {
+        background: var(--panel);
+        border: 1px solid rgba(109, 101, 95, 0.14);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 26px 28px;
+        display: grid;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow {
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font: 700 12px/1.1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        font-size: clamp(32px, 4vw, 50px);
+        line-height: 0.98;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .subtitle,
+      .meta,
+      .copy,
+      li,
+      td,
+      th {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.75;
+        max-width: 920px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(109, 101, 95, 0.15);
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .panel {
+        padding: 22px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .panel.user {
+        border-top: 4px solid var(--blue);
+      }
+
+      .panel.jobs {
+        border-top: 4px solid var(--olive);
+      }
+
+      .label {
+        color: var(--muted);
+        font: 700 12px/1.1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .stack {
+        display: grid;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(109, 101, 95, 0.12);
+        background: rgba(250, 247, 240, 0.88);
+      }
+
+      .card strong {
+        display: block;
+        margin-bottom: 6px;
+        font: 700 14px/1.3 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .copy {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .callout {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: #fff7f3;
+        border-left: 4px solid var(--accent);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 6px;
+        font: 700 14px/1.3 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .table-panel {
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(109, 101, 95, 0.12);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      th {
+        background: rgba(246, 239, 228, 0.84);
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .yes {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .no {
+        color: var(--olive);
+        font-weight: 700;
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: rgba(31, 26, 23, 0.06);
+        font-family: "SFMono-Regular", ui-monospace, Menlo, monospace;
+        font-size: 12px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      @media (max-width: 900px) {
+        main {
+          width: min(100vw - 24px, 1220px);
+          padding: 22px 0 40px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        th,
+        td {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Runtime Flows</div>
+        <h1>Role Radar 用户请求链路与后台任务链路</h1>
+        <p class="subtitle">
+          这份文档说明当前生产架构里，哪些操作只会读本地数据库，哪些操作会调用
+          Brave Search、Gemini、MiniMax、Turnstile、SMTP。重点回答一个常见问题：
+          用户只是浏览网页时，会不会额外产生外部搜索或大模型成本。
+        </p>
+        <div class="meta">
+          <span class="chip">适用版本：v2.1</span>
+          <span class="chip">数据库：SQLite</span>
+          <span class="chip">外部搜索：Brave</span>
+          <span class="chip">模型：Gemini / MiniMax</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel user">
+          <div class="label">用户访问链路</div>
+          <h2>默认是只读本地数据</h2>
+          <div class="stack">
+            <div class="card">
+              <strong>首页 / 岗位详情 / 中英文切换</strong>
+              <p class="copy">
+                这些请求默认只会命中 Next.js 服务端和 SQLite，不会临时去调 Brave 搜索，也不会临时去调 Gemini 或 MiniMax。
+              </p>
+            </div>
+            <div class="card">
+              <strong>watchlist 登录与订阅</strong>
+              <p class="copy">
+                这条链路会命中站内 API，并可能调用 Turnstile 和 SMTP，但不会触发 Brave 搜索，也不会跑岗位时间线归因。
+              </p>
+            </div>
+            <div class="card">
+              <strong>页面展示的时间线</strong>
+              <p class="copy">
+                页面只读取已经落库的 <code>Signal</code> 和 <code>RoleEvidenceCandidate</code>，不会在用户点击岗位时现搜现算。
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel jobs">
+          <div class="label">后台任务链路</div>
+          <h2>外部成本主要在这里产生</h2>
+          <div class="stack">
+            <div class="card">
+              <strong><code>npm run ingest:signals</code></strong>
+              <p class="copy">
+                负责源抓取、归一化、岗位归因、风险刷新。这条链路可能调用 Gemini 或 MiniMax。
+              </p>
+            </div>
+            <div class="card">
+              <strong><code>npm run discovery:roles</code></strong>
+              <p class="copy">
+                负责按岗位搜索补洞。会调 Brave Search；遇到规则不够确定的候选时，可能再调 MiniMax 或 Gemini 做 adjudication。
+              </p>
+            </div>
+            <div class="card">
+              <strong><code>scripts/run-daily-cycle.sh</code></strong>
+              <p class="copy">
+                daily scheduler 的入口。是否执行岗位搜索补洞，取决于 <code>ROLE_RADAR_DAILY_ENABLE_ROLE_DISCOVERY</code>。
+              </p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="table-panel" aria-labelledby="matrix-title">
+        <table>
+          <thead>
+            <tr>
+              <th id="matrix-title">动作</th>
+              <th>读取 SQLite</th>
+              <th>调用 Brave</th>
+              <th>调用 Gemini / MiniMax</th>
+              <th>其他外部调用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>打开首页</td>
+              <td class="yes">会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+            </tr>
+            <tr>
+              <td>打开岗位详情页</td>
+              <td class="yes">会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+            </tr>
+            <tr>
+              <td>切换中英文</td>
+              <td class="yes">会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+            </tr>
+            <tr>
+              <td>watchlist 请求验证码</td>
+              <td class="yes">会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+              <td>可能调 Turnstile、SMTP</td>
+            </tr>
+            <tr>
+              <td>watchlist 验证验证码 / 保存订阅</td>
+              <td class="yes">会</td>
+              <td class="no">不会</td>
+              <td class="no">不会</td>
+              <td>SMTP 仅在发码时使用</td>
+            </tr>
+            <tr>
+              <td><code>ingest:signals</code></td>
+              <td class="yes">会</td>
+              <td class="no">通常不会</td>
+              <td class="yes">会</td>
+              <td>会访问外部源站</td>
+            </tr>
+            <tr>
+              <td><code>discovery:roles</code></td>
+              <td class="yes">会</td>
+              <td class="yes">会</td>
+              <td class="yes">可能会</td>
+              <td class="no">不会发邮件</td>
+            </tr>
+            <tr>
+              <td>daily cycle</td>
+              <td class="yes">会</td>
+              <td>取决于 discovery 是否开启</td>
+              <td>取决于实际执行到的任务</td>
+              <td>通知阶段会调 SMTP</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="grid" style="margin-top: 18px;">
+        <article class="panel">
+          <div class="label">时间线为什么会有空岗位</div>
+          <ul>
+            <li>当前页面不会即时搜索，所以岗位页只展示已经缓存和落库的时间线。</li>
+            <li>daily discovery 默认不是全量跑 700 多个岗位，而是按 limit 跑一小批稀疏岗位。</li>
+            <li>即使搜到了结果，也还要经过过滤和归因，landing page、职业百科、弱相关页面会被挡掉。</li>
+            <li>因此“当前没有时间线”不代表永远没有，只代表这轮还没补到，或补到后被过滤掉了。</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <div class="label">当前缓存与重试规则</div>
+          <ul>
+            <li>岗位搜索结果会写入 <code>SearchQueryRun</code> 和 <code>SearchHit</code>。</li>
+            <li>当前单次 query cache 默认新鲜期是 24 小时。</li>
+            <li>后续再跑 discovery 时，过期了会重新搜；没过期则优先复用缓存。</li>
+            <li>最终只有 <code>timelineEligible=true</code> 的证据会出现在岗位时间线中。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="panel" style="margin-top: 18px;">
+        <div class="label">运维建议</div>
+        <div class="callout">
+          <strong>如果你希望生产环境持续补时间线</strong>
+          <p class="copy">
+            把 <code>ROLE_RADAR_DAILY_ENABLE_ROLE_DISCOVERY</code> 设为 <code>1</code>，并把
+            <code>ROLE_RADAR_DAILY_ROLE_DISCOVERY_LIMIT</code> 设为一个你能接受成本的值，例如
+            <code>20</code>。如果只是用户正常浏览网页，不需要担心 Brave 或大模型请求被放大；真正的成本主要来自 daily/manual 的后台任务。
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+[
+  {
+    "id": "openai-decagon-customer-support",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/decagon/",
+    "title": "Decagon and OpenAI deliver high-performance, fully automated customer support at scale",
+    "summary": "OpenAI describes Decagon using its models to automate customer support conversations at scale without human intervention.",
+    "expectedAssignedRoleSlug": "customer-service-representative",
+    "note": "Direct support-automation case study should attach to customer service."
+  },
+  {
+    "id": "venturebeat-zendesk-customer-service-platform",
+    "sourceLabel": "VentureBeat",
+    "sourceType": "NEWS",
+    "sourceUrl": "https://venturebeat.com/ai/zendesk-unveils-ai-powered-customer-service-platform-proactive-agents-ai-copilot-workforce-management",
+    "title": "Zendesk unveils AI-powered CX platform with sophisticated agents and intelligent copilots",
+    "summary": "The report describes AI agents and copilots automating more customer support interactions and case resolution.",
+    "expectedAssignedRoleSlug": "customer-service-representative",
+    "note": "High-quality AI media piece tied directly to customer support workflows."
+  },
+  {
+    "id": "openai-financial-operations",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/business/put-ai-to-work-automate-and-scale-financial-operations//",
+    "title": "Put AI to work: Automate and Scale Financial Operations",
+    "summary": "OpenAI highlights automating reconciliation, closing work, and finance back-office processes with AI.",
+    "expectedAssignedRoleSlug": "bookkeeping-clerk",
+    "note": "Finance operations automation is a direct bookkeeping and back-office signal."
+  },
+  {
+    "id": "venturebeat-docyt-ai-bookkeeper",
+    "sourceLabel": "VentureBeat",
+    "sourceType": "NEWS",
+    "sourceUrl": "https://venturebeat.com/business/docyt-ai-unveils-gary-the-worlds-first-ai-bookkeeper",
+    "title": "Docyt AI Unveils GARY, the World's First AI Bookkeeper",
+    "summary": "Docyt says its AI bookkeeper automates manual bookkeeping and continuous reconciliation, dramatically shortening the monthly close.",
+    "expectedAssignedRoleSlug": "bookkeeping-clerk",
+    "note": "The article is explicitly about AI bookkeepers replacing manual bookkeeping work."
+  },
+  {
+    "id": "openai-basis-accounting-firms",
+    "sourceLabel": "OpenAI",
+    "sourceType": "BLOG",
+    "sourceUrl": "https://openai.com/index/basis/",
+    "title": "Basis scales accounting by turning OpenAI model progress into trusted agents",
+    "summary": "OpenAI says Basis uses AI agents to automate reconciliations, journal entries, and financial summaries inside accounting firms.",
+    "expectedAssignedRoleSlug": "bookkeeping-clerk",
+    "note": "Accounting-firm workflow automation should map to bookkeeping rather than stay broad."
+  },
+  {
+    "id": "openai-numeric-accounting-workflow",
+    "sourceLabel": "OpenAI",
+    "sourceType": "BLOG",
+    "sourceUrl": "https://openai.com/index/numeric/",
+    "title": "How Numeric is automating accounting workflows with OpenAI",
+    "summary": "Numeric uses OpenAI models to automate accounting close work, reconciliation, and finance review workflows.",
+    "expectedAssignedRoleSlug": "bookkeeping-clerk",
+    "note": "Another direct accounting automation case with clear occupational fit."
+  },
+  {
+    "id": "openai-axios-journalism",
+    "sourceLabel": "OpenAI",
+    "sourceType": "BLOG",
+    "sourceUrl": "https://openai.com/index/axios/",
+    "title": "How Axios uses AI to help deliver high-impact local journalism",
+    "summary": "Axios describes journalists using AI tools to support reporting and local-news workflows.",
+    "expectedAssignedRoleSlug": "news-analysts-reporters-and-journalists",
+    "note": "The article is explicitly framed around journalism work."
+  },
+  {
+    "id": "openai-newsroom-ai-catalyst",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/newsroom-ai-catalyst-global-program-with-wan-ifra/",
+    "title": "The Newsroom AI Catalyst: a global program with WAN-IFRA",
+    "summary": "The program focuses on AI adoption in newsrooms and publisher workflows.",
+    "expectedAssignedRoleSlug": "news-analysts-reporters-and-journalists",
+    "note": "This is one of the few newsroom pieces that is specific enough to journalism operations."
+  },
+  {
+    "id": "techcrunch-particle-publishers",
+    "sourceLabel": "TechCrunch",
+    "sourceType": "NEWS",
+    "sourceUrl": "https://techcrunch.com/2024/11/12/particle-launches-an-ai-news-app-to-help-publishers-instead-of-just-stealing-their-work/",
+    "title": "Particle launches an AI news app to help publishers, instead of just stealing their work",
+    "summary": "TechCrunch covers an AI news app for consumers and publishers, but the story is mostly about product strategy and media distribution.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Publisher/product news is too broad to attach to one occupation with high precision."
+  },
+  {
+    "id": "anthropic-agent-autonomy",
+    "sourceLabel": "Anthropic",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://www.anthropic.com/news/measuring-agent-autonomy",
+    "title": "Measuring AI agent autonomy in practice",
+    "summary": "Anthropic analyzes millions of agent interactions across many domains, from email triage to cyber operations, without centering one occupation.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Cross-domain autonomy research should stay unmatched."
+  },
+  {
+    "id": "openai-one-in-a-million-customers",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/one-in-a-million-customers/",
+    "title": "One in a million: celebrating the customers shaping AI's future",
+    "summary": "OpenAI highlights many kinds of customer adoption across writing, coding, research, data analysis, and design.",
+    "expectedAssignedRoleSlug": null,
+    "note": "This is a broad customer roundup, not a role-specific workflow signal."
+  },
+  {
+    "id": "openai-state-of-enterprise-ai",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/state-of-enterprise-ai/",
+    "title": "The state of enterprise AI",
+    "summary": "OpenAI summarizes enterprise AI trends across functions and industries rather than one job family.",
+    "expectedAssignedRoleSlug": null,
+    "note": "General enterprise trend reporting should not force a role."
+  },
+  {
+    "id": "openai-value-of-intelligence",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/a-business-that-scales-with-the-value-of-intelligence/",
+    "title": "A business that scales with the value of intelligence",
+    "summary": "The post argues for the economics of AI across companies but does not describe one occupation's workflow in detail.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Broad strategic framing should stay unmatched."
+  },
+  {
+    "id": "openai-and-journalism",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/openai-and-journalism/",
+    "title": "OpenAI and journalism",
+    "summary": "OpenAI outlines partnership and licensing work with publishers and journalism organizations.",
+    "expectedAssignedRoleSlug": null,
+    "note": "This is industry-partnership news, not a direct occupation workflow change."
+  },
+  {
+    "id": "openai-ajp-local-news",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/partnership-with-american-journalism-project-to-support-local-news/",
+    "title": "Partnership with American Journalism Project to support local news",
+    "summary": "OpenAI announces funding and API credits for local news organizations to explore AI adoption.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Funding and partnership support for an industry should not be treated as one role signal."
+  },
+  {
+    "id": "openai-academy-news-organizations",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/openai-academy-for-news-organizations/",
+    "title": "Introducing OpenAI Academy for News Organizations",
+    "summary": "OpenAI launches training resources for news organizations to experiment with AI tools.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Training and enablement news is still too broad to attach to one occupation."
+  },
+  {
+    "id": "openai-hearst-partnership",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/hearst/",
+    "title": "OpenAI and Hearst Content Partnership",
+    "summary": "OpenAI and Hearst describe a content and product partnership across Hearst brands.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Content partnership news is broad and not role-specific enough."
+  },
+  {
+    "id": "venturebeat-zencoder-zen-agents",
+    "sourceLabel": "VentureBeat",
+    "sourceType": "NEWS",
+    "sourceUrl": "https://venturebeat.com/ai/zencoder-launches-zen-agents-ushering-in-a-new-era-of-team-based-ai-for-software-development",
+    "title": "Zencoder launches Zen Agents, ushering in a new era of team-based AI for software development",
+    "summary": "The article describes collaborative coding agents for software teams, but the current role dictionary lacks a clearly equivalent software-developer role.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Prefer unmatched over a forced mapping when the dictionary does not fit cleanly."
+  },
+  {
+    "id": "openai-support-operations-manager-job",
+    "sourceLabel": "OpenAI Careers",
+    "sourceType": "JOB_POSTING",
+    "sourceUrl": "https://openai.com/careers/support-operations-manager/",
+    "title": "Support Operations Manager | OpenAI",
+    "summary": "OpenAI seeks a support operations manager to architect automation systems and agentic workflows for customer support at scale.",
+    "expectedAssignedRoleSlug": null,
+    "note": "The posting is managerial and cross-functional, so precision-first classification should not downgrade it to a frontline support role."
+  },
+  {
+    "id": "openai-operations-analyst-trust-safety-job",
+    "sourceLabel": "OpenAI Careers",
+    "sourceType": "JOB_POSTING",
+    "sourceUrl": "https://openai.com/careers/operations-analyst-user-operations-%28trust-and-safety%29-emea-london-uk/",
+    "title": "Operations Analyst, User Operations (Trust & Safety) - EMEA | OpenAI",
+    "summary": "The role focuses on trust, safety, abuse prevention, escalations, and operational risk workflows.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Trust and safety operations do not cleanly match the current public role dictionary."
+  },
+  {
+    "id": "openai-user-safety-risk-ops-job",
+    "sourceLabel": "OpenAI Careers",
+    "sourceType": "JOB_POSTING",
+    "sourceUrl": "https://openai.com/careers/user-safety-and-risk-operations-analyst/",
+    "title": "User Safety & Risk Operations Analyst | OpenAI",
+    "summary": "OpenAI describes analysts handling abuse, fraud, compliance, and sensitive inbound risk cases.",
+    "expectedAssignedRoleSlug": null,
+    "note": "The safest behavior is unmatched until the dictionary carries a closer trust-and-safety occupation."
+  },
+  {
+    "id": "openai-journalism-policy-roundup",
+    "sourceLabel": "OpenAI",
+    "sourceType": "COMPANY_UPDATE",
+    "sourceUrl": "https://openai.com/index/openai-and-journalism/",
+    "title": "OpenAI and journalism",
+    "summary": "The post discusses principles, partnerships, and licensing around journalism rather than automating newsroom tasks directly.",
+    "expectedAssignedRoleSlug": null,
+    "note": "Industry policy content should remain unmatched."
+  }
+]

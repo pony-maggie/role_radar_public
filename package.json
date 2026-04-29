@@ -1,0 +1,50 @@
+{
+  "name": "role-radar",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "test:unit": "DATABASE_URL=\"${DATABASE_URL:-file:./prisma/dev.db}\" vitest run --no-file-parallelism",
+    "test:e2e": "DATABASE_URL=\"${DATABASE_URL:-file:./prisma/dev.db}\" playwright test",
+    "db:generate": "node -e \"const fs=require('node:fs');const cp=require('node:child_process');if(!fs.existsSync('prisma/schema.prisma')){console.log('[bootstrap] skipped db:generate because prisma/schema.prisma is missing');process.exit(0)}cp.execSync('prisma generate',{stdio:'inherit'})\"",
+    "db:migrate": "node -e \"const fs=require('node:fs');const cp=require('node:child_process');if(!fs.existsSync('prisma/schema.prisma')){console.log('[bootstrap] skipped db:migrate because prisma/schema.prisma is missing');process.exit(0)}cp.execSync('prisma migrate dev',{stdio:'inherit'})\"",
+    "db:import-dictionary": "tsx scripts/import-role-dictionary.ts",
+    "db:seed": "node -e \"const fs=require('node:fs');const cp=require('node:child_process');if(!fs.existsSync('prisma/seed.ts')){console.log('[bootstrap] skipped db:seed because prisma/seed.ts is missing');process.exit(0)}cp.execSync('tsx prisma/seed.ts',{stdio:'inherit'})\"",
+    "ingest:signals": "tsx scripts/ingest-signals.ts",
+    "discovery:roles": "tsx scripts/run-role-discovery.ts",
+    "ops:refresh-all-roles": "tsx scripts/run-refresh-all-roles.ts",
+    "notifications:run": "tsx scripts/run-notifications.ts",
+    "ops:daily": "./scripts/run-daily-cycle.sh",
+    "regression:inference": "tsx scripts/run-inference-regression.ts",
+    "verify": "./scripts/verify.sh"
+  },
+  "dependencies": {
+    "@google/genai": "^1.49.0",
+    "@prisma/client": "^6.7.0",
+    "next": "^15.3.0",
+    "nodemailer": "^8.0.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.0",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.25.0",
+    "eslint-config-next": "^15.3.0",
+    "jsdom": "^26.1.0",
+    "prisma": "^6.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  }
+}

@@ -1,0 +1,120 @@
+[
+  {
+    "id": "customer-service-representative-live-support-signals",
+    "roleSlug": "customer-service-representative",
+    "expectedReplacementRateMin": 65,
+    "expectedReplacementRateMax": 90,
+    "expectedRiskBand": "high",
+    "note": "Direct support-automation case studies should keep customer support elevated even if jobs evidence is secondary.",
+    "items": [
+      {
+        "sourceLabel": "OpenAI",
+        "sourceType": "COMPANY_UPDATE",
+        "publishedAt": "2026-03-20",
+        "title": "Decagon and OpenAI deliver high-performance, fully automated customer support at scale",
+        "summaryEn": "OpenAI describes Decagon automating customer support conversations at scale without human intervention.",
+        "inferenceSummaryEn": "This official case study points to direct automation of frontline customer support work.",
+        "impactDirection": "increase",
+        "relevance": "high",
+        "signalWeight": 1
+      },
+      {
+        "sourceLabel": "VentureBeat",
+        "sourceType": "media",
+        "publishedAt": "2024-04-16",
+        "title": "Zendesk unveils AI-powered CX platform with sophisticated agents and intelligent copilots",
+        "summaryEn": "Zendesk expands AI agents and copilots to automate more support interactions and case resolution.",
+        "inferenceSummaryEn": "The media report reinforces direct customer support automation pressure.",
+        "impactDirection": "increase",
+        "relevance": "high",
+        "signalWeight": 0.8
+      },
+      {
+        "sourceLabel": "OpenAI Careers",
+        "sourceType": "jobs",
+        "publishedAt": "2026-01-10",
+        "title": "Support Operations Manager | OpenAI",
+        "summaryEn": "The posting emphasizes building automation systems and agentic workflows to scale support quality.",
+        "inferenceSummaryEn": "The job posting supports the broader shift toward automated support operations.",
+        "impactDirection": "increase",
+        "relevance": "medium",
+        "signalWeight": 0.4
+      }
+    ]
+  },
+  {
+    "id": "bookkeeping-clerk-finance-automation-signals",
+    "roleSlug": "bookkeeping-clerk",
+    "expectedReplacementRateMin": 55,
+    "expectedReplacementRateMax": 85,
+    "expectedRiskBand": "high",
+    "note": "Finance automation and AI bookkeeping signals should keep bookkeeping risk clearly above midpoint.",
+    "items": [
+      {
+        "sourceLabel": "OpenAI",
+        "sourceType": "official",
+        "publishedAt": "2024-09-30",
+        "title": "Put AI to work: Automate and Scale Financial Operations",
+        "summaryEn": "OpenAI highlights automating reconciliation, closing, and finance back-office work with AI.",
+        "inferenceSummaryEn": "The official workflow story directly targets repetitive bookkeeping tasks.",
+        "impactDirection": "increase",
+        "relevance": "high",
+        "signalWeight": 1
+      },
+      {
+        "sourceLabel": "OpenAI",
+        "sourceType": "official",
+        "publishedAt": "2025-11-05",
+        "title": "Basis scales accounting by turning OpenAI model progress into trusted agents",
+        "summaryEn": "OpenAI says Basis uses AI agents to automate reconciliations, journal entries, and financial summaries in accounting firms.",
+        "inferenceSummaryEn": "This case study reinforces automation pressure on bookkeeping and close work.",
+        "impactDirection": "increase",
+        "relevance": "high",
+        "signalWeight": 0.9
+      },
+      {
+        "sourceLabel": "VentureBeat",
+        "sourceType": "media",
+        "publishedAt": "2024-07-16",
+        "title": "Docyt AI Unveils GARY, the World's First AI Bookkeeper",
+        "summaryEn": "Docyt says its AI bookkeeper automates manual bookkeeping and continuous reconciliation.",
+        "inferenceSummaryEn": "The article explicitly describes AI taking over bookkeeping tasks.",
+        "impactDirection": "increase",
+        "relevance": "high",
+        "signalWeight": 0.8
+      }
+    ]
+  },
+  {
+    "id": "industrial-maintenance-technician-broad-ai-news",
+    "roleSlug": "industrial-maintenance-technician",
+    "expectedReplacementRateMin": 5,
+    "expectedReplacementRateMax": 30,
+    "expectedRiskBand": "low",
+    "note": "Broad AI strategy news without physical-maintenance evidence should not meaningfully spike this role.",
+    "items": [
+      {
+        "sourceLabel": "OpenAI",
+        "sourceType": "official",
+        "publishedAt": "2025-12-22",
+        "title": "One in a million: celebrating the customers shaping AI's future",
+        "summaryEn": "OpenAI summarizes broad customer AI adoption across writing, coding, research, and analytics.",
+        "inferenceSummaryEn": "This is broad adoption context rather than evidence about physical maintenance work.",
+        "impactDirection": "neutral",
+        "relevance": "low",
+        "signalWeight": 0.3
+      },
+      {
+        "sourceLabel": "Anthropic",
+        "sourceType": "official",
+        "publishedAt": "2026-02-18",
+        "title": "Measuring AI agent autonomy in practice",
+        "summaryEn": "Anthropic analyzes agent autonomy across many domains, from email triage to cyber operations.",
+        "inferenceSummaryEn": "Cross-domain agent research does not directly change industrial maintenance tasks.",
+        "impactDirection": "neutral",
+        "relevance": "low",
+        "signalWeight": 0.3
+      }
+    ]
+  }
+]
