@@ -4,13 +4,17 @@ Role Radar is a bilingual web app that estimates how exposed different jobs are 
 
 职危图谱是一个中英文双语网站，用来观察不同岗位受到 AI 自动化影响的程度。它结合静态岗位词典、经过筛选的信息源、可缓存的模型推理结果，以及面向公众的岗位详情页，展示岗位替代率、原因、证据时间线和历史趋势。
 
-> Screenshot placeholders:
->
-> - `docs/assets/screenshots/home-en.png`
-> - `docs/assets/screenshots/role-detail-en.png`
-> - `docs/assets/screenshots/home-zh.png`
->
-> Replace these placeholder paths with real screenshots when you publish the project page.
+## Screenshots / 截图
+
+Screenshots are intentionally left as placeholders until the public demo is captured.
+
+截图位置已预留，发布项目页前替换为真实截图即可。
+
+| View | Placeholder path |
+| --- | --- |
+| English homepage | `docs/assets/screenshots/home-en.png` |
+| English role detail | `docs/assets/screenshots/role-detail-en.png` |
+| Chinese homepage | `docs/assets/screenshots/home-zh.png` |
 
 ## What It Does
 
