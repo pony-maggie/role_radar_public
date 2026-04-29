@@ -1,4 +1,4 @@
-import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { prisma } from "@/lib/db/prisma";
 import { buildRoleDiscoveryQueryHash } from "@/lib/role-discovery/cache-keys";
 import { upsertSearchQueryRun } from "@/lib/repositories/role-discovery";
@@ -9,7 +9,7 @@ describe("runRoleDiscovery", () => {
     await prisma.$disconnect();
   });
 
-  afterEach(async () => {
+  async function cleanupDiscoveryFixtures() {
     await prisma.sourceItemInference.deleteMany({
       where: {
         sourceItem: {
@@ -63,7 +63,10 @@ describe("runRoleDiscovery", () => {
         }
       }
     });
-  });
+  }
+
+  beforeEach(cleanupDiscoveryFixtures);
+  afterEach(cleanupDiscoveryFixtures);
 
   it("reuses a fresh cached query run instead of searching again", async () => {
     const queryText = "Customer Service Representatives AI automation";
