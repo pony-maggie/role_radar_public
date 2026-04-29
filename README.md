@@ -6,15 +6,12 @@ Role Radar is a bilingual web app that estimates how exposed different jobs are 
 
 ## Screenshots / 截图
 
-Screenshots are intentionally left as placeholders until the public demo is captured.
-
-截图位置已预留，发布项目页前替换为真实截图即可。
 
 | View | Placeholder path |
 | --- | --- |
-| English homepage | `docs/assets/screenshots/home-en.png` |
-| English role detail | `docs/assets/screenshots/role-detail-en.png` |
-| Chinese homepage | `docs/assets/screenshots/home-zh.png` |
+| 网站效果1 | `docs/assets/screenshots/1.png` |
+| 网站效果2 | `docs/assets/screenshots/2.png` |
+| 网站效果3 | `docs/assets/screenshots/3.png` |
 
 ## What It Does
 
